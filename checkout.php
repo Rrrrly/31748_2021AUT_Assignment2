@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Hertz-UTS</title></head>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        // retrive total price
+         $(document).ready(function() {
+            let total_price = window.sessionStorage.getItem("price");
+            $("#price").append(`<h3>Total price: $${total_price}</h3>`);
+         });
+    </script>
+    
+    <body>
+        <header>
+            <div class="inner">
+                <div class="home">
+                    <a class="logo" href="index.php">Hertz-UTS</a>
+                </div>
+                <div align="center"><h2 style="color:#fff;">Car Rental Centre</h2></div>
+                <button class="button" id="btn" onclick="back()">Continue Selection</button>
+            </div>
+        </header>
+        
+        <h1 style="text-align: center">Check Out</h1>
+        <h3>Customer Details and Payment</h3>
+        <p>Please fill in your details. <span style="color:#FF0000">*</span> indicates require field.</p>
+        
+        <div class="form">
+            <form name="checkout" method="post" onsubmit="check(); return false">
+                <table class="form" border="0">
+                    <tr>
+                        <td class="col1">
+                            Name:
+                            <span style="color:#FF0000">*</span>
+                        </td>
+                        <td class="col2">
+                            <input required class="col2" type="text" id="name" name="name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            Email Address:
+                            <span style="color:#FF0000">*</span>
+                        </td>
+                        <td class="col2">
+                            <input required class="col2" type="email" id="email" name="email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            Mailing Adress:
+                            <span style="color:#FF0000">*</span>
+                        </td>
+                        <td class="col2">
+                            <input required class="col2" type="text" id="address" name="address">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            City:
+                            <span style="color:#FF0000">*</span>
+                        </td>
+                        <td class="col2">
+                            <input required class="col2" type="text" id="city" name="city">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            State:
+                            <span style="color:#FF0000">*</span>
+                        </td>
+                        <td class="col2">
+                            <select required class="col2" type="text" id="state" name="state">
+                                <option>Australian Capital Territory</option>
+                                <option>New South Wales</option>
+                                <option>Queensland</option>
+                     			<option>Western Australia</option>
+                     			<option>South Australia</option>
+                     			<option>Victoria</option>
+                     			<option>Tasmania</option>
+                     		</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            Postcode:
+                            <span style="color:red">*</span>
+                        </td>
+                        <td class="col2">
+                            <input required class="col2" type="text" id="postcode" name="postcode">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">
+                            Payment Type: 
+                            <span style="color:red">*</span>
+                        </td>
+                        <td class="col2">
+                            <select required class="col2" type="text" id="paymentType" name="paymentType">
+                     			<option>VISA</option>
+                     			<option>Mastercard</option>
+                     			<option>AMEX</option>
+                     			<option>PayPal</option>
+                     		</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="right"> 
+                            <br><h3 style="text-align: left" id="price"></h3> <!-- display total price -->
+                            <input class="button" id="btn" type="submit" value="Confirm">
+                        </td>  
+                    </tr>
+                </table>
+            </form>
+        </div>
+        
+        <script type="text/javascript">
+            //check email address validation
+            function check() {
+                //let format = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //regular expression to get valid email id
+                //let format = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                let regexp = /\S+@\S+\.\S+/;
+                var emailInput =document.getElementById("email").value; //get email address input
+                if(regexp.test(emailInput)) {
+                    window.sessionStorage.clear(); //clear sessionStorage
+                    window.location.href="thankyou.php"
+                } else {
+                    alert("Invalid email address. Please input again.");
+                }
+            }
+            
+            //return to homepage
+            function back() {
+                window.location.href="index.php";
+            }
+        </script>
+    </body>
+</html>
