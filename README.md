@@ -1,4 +1,4 @@
- Renam html to php
+ Rename html to php
  
  
  
